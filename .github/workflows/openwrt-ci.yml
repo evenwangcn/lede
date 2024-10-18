@@ -170,7 +170,7 @@ jobs:
           CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Xray=y
           CONFIG_PACKAGE_luci-app-v2ray-server=n
           CONFIG_PACKAGE_luci-app-smartdns=n
-          CONFIG_PACKAGE_luci-app-openclash=n
+          CONFIG_PACKAGE_luci-app-openclash=y
           CONFIG_PACKAGE_luci-app-passwall=y
           CONFIG_PACKAGE_luci-app-mosdns=y
           EOF
@@ -269,4 +269,3 @@ jobs:
           file: ./artifact/firmware/*
           tag: ${{ github.ref }}
           file_glob: true
-
