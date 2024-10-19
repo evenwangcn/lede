@@ -178,7 +178,8 @@ jobs:
           # LuCI主题:
           cat >> .config <<EOF
           #CONFIG_PACKAGE_luci-theme-argon=y
-          CONFIG_PACKAGE_luci-theme-netgear=y
+          #CONFIG_PACKAGE_luci-theme-netgear=y
+          CONFIG_PACKAGE_luci-theme-design=y
           EOF
 
           # 其它设置
