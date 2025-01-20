@@ -1,7 +1,9 @@
+src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
+src-git small https://github.com/kenzok8/small' feeds.conf.default
 src-git packages https://github.com/coolsnowwolf/packages
 #src-git luci https://github.com/coolsnowwolf/luci
 #src-git luci https://github.com/coolsnowwolf/luci.git;openwrt-23.05
-src-git kenzok8small https://github.com/kenzok8/small.git
+#src-git kenzok8small https://github.com/kenzok8/small.git
 #自己fork的luci，自己添加了一些缺失的插件和主题
 src-git luci https://github.com/evenwangcn/luci.git;openwrt-23.05
 src-git routing https://github.com/coolsnowwolf/routing
