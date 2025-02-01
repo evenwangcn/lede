@@ -4,9 +4,9 @@ src-git kenzok8packages https://github.com/kenzok8/openwrt-packages.git
 #src-git kwrtpackages https://github.com/kiddin9/kwrt-packages.git
 src-git packages https://github.com/coolsnowwolf/packages
 #src-git luci https://github.com/coolsnowwolf/luci
-#src-git luci https://github.com/coolsnowwolf/luci.git;openwrt-23.05
+src-git luci https://github.com/coolsnowwolf/luci.git;openwrt-23.05
 #自己fork的luci，自己添加了一些缺失的插件和主题
-src-git luci https://github.com/evenwangcn/luci.git;openwrt-23.05
+#src-git luci https://github.com/evenwangcn/luci.git;openwrt-23.05
 src-git routing https://github.com/coolsnowwolf/routing
 src-git telephony https://github.com/coolsnowwolf/telephony.git
 #src-git helloworld https://github.com/fw876/helloworld.git
