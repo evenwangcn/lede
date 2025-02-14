@@ -178,7 +178,7 @@ jobs:
           CONFIG_PACKAGE_luci-app-nlbwmon=n
           CONFIG_PACKAGE_luci-app-samba=n
           CONFIG_PACKAGE_luci-app-samba4=n
-          CONFIG_PACKAGE_luci-app-ddnsto=y
+          #CONFIG_PACKAGE_luci-app-ddnsto=y
           EOF
 
           # LuCI主题:
