@@ -1,5 +1,5 @@
-src-git passwall_packages https://github.com/Openwrt-Passwall/openwrt-passwall-packages.git;main
-src-git passwall_luci https://github.com/Openwrt-Passwall/openwrt-passwall.git;main
+#src-git passwall_packages https://github.com/Openwrt-Passwall/openwrt-passwall-packages.git;main
+#src-git passwall_luci https://github.com/Openwrt-Passwall/openwrt-passwall.git;main
 src-git kenzok8small https://github.com/kenzok8/small
 #src-git kenzok8small https://github.com/evenwangcn/small
 src-git kenzok8packages https://github.com/kenzok8/openwrt-packages.git
