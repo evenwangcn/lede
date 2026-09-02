@@ -280,13 +280,15 @@ jobs:
       - name: Upload firmware to GitHub Release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          RELEASE_TAG: AutoBuild
         run: |
+          RELEASE_DATE="$(TZ=Asia/Shanghai date +'%Y.%m.%d')"
+          RELEASE_TAG="Even-${RELEASE_DATE}"
+
           if gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
             gh release upload "$RELEASE_TAG" ./artifact/firmware/* --clobber
           else
             gh release create "$RELEASE_TAG" ./artifact/firmware/* \
               --target "$GITHUB_SHA" \
-              --title "OpenWrt AutoBuild" \
-              --notes "Automated OpenWrt firmware build."
+              --title "OpenWrt Even ${RELEASE_DATE}" \
+              --notes "Automated OpenWrt firmware build on ${RELEASE_DATE}."
           fi
