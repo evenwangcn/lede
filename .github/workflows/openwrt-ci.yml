@@ -51,14 +51,6 @@ jobs:
         with:
           ref: master
 
-      - name: Cache OpenWrt downloads
-        uses: actions/cache@v5
-        with:
-          path: ./dl
-          key: ${{ runner.os }}-openwrt-dl-${{ hashFiles('feeds.conf.default', '.github/workflows/*.yml') }}
-          restore-keys: |
-            ${{ runner.os }}-openwrt-dl-
-
       - name: Install dependencies
         env:
           DEBIAN_FRONTEND: noninteractive
