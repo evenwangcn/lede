@@ -389,7 +389,7 @@
 		ethernet@0,0 {
 			compatible = "pci10ec,8125";
 			reg = <0x000000 0 0 0 0>;
-			led-data = <0x23f 0x3f 0 0>;
+			realtek,led-data = <0x238>;
 		};
 	};
 };
@@ -409,7 +409,7 @@
 		ethernet@0,0 {
 			compatible = "pci10ec,8125";
 			reg = <0x000000 0 0 0 0>;
-			led-data = <0x23f 0x3f 0 0>;
+			realtek,led-data = <0x238>;
 		};
 	};
 };
