@@ -30,26 +30,37 @@ jobs:
       contents: write
 
     steps:
-      - name: Free Disk Space (Ubuntu)
-        uses: jlumbroso/free-disk-space@main
-        with:
-          # this might remove tools that are actually needed,
-          # if set to "true" but frees about 6 GB
-          tool-cache: true
-          
-          # all of these default to true, but feel free to set to
-          # "false" if necessary for your workflow
-          android: true
-          dotnet: true
-          haskell: true
-          large-packages: false
-          docker-images: true
-          swap-storage: false
-
+      # 【修正】必须先 Checkout 源码，才能在正确的根目录下进行后续的缓存和清理
       - name: Checkout
         uses: actions/checkout@v6
         with:
           ref: master
+
+      - name: Free Disk Space (Ubuntu)
+        uses: jlumbroso/free-disk-space@main
+        with:
+          tool-cache: true
+          android: true
+          dotnet: true
+          haskell: true
+          large-packages: true
+          docker-images: true
+          swap-storage: false
+      
+      - name: Setup Swap Space
+        uses: pierotofy/set-swap-space@master
+        with:
+          swap-size-gb: 4
+
+      # 【修正】将缓存路径改为 ./dl，与你的实际编译根目录保持一致
+      - name: Cache OpenWrt Downloads
+        uses: actions/cache@v4
+        with:
+          path: ./dl
+          key: ${{ runner.os }}-openwrt-dl-${{ hashFiles('feeds.conf.default') }}
+          restore-keys: |
+            ${{ runner.os }}-openwrt-dl-
+
 
       - name: Install dependencies
         env:
@@ -242,7 +253,7 @@ jobs:
 
       - name: Compile firmware
         run: |
-          make V=s -j$(nproc) || make V=s -j1
+          make V=s -j2
           echo "======================="
           echo "Space usage:"
           echo "======================="
