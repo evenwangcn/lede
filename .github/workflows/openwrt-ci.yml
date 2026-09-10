@@ -57,9 +57,9 @@ jobs:
         uses: actions/cache@v5
         with:
           path: ./dl
-          key: ${{ runner.os }}-openwrt-dl-${{ hashFiles('feeds.conf.default') }}
+          key: ${{ runner.os }}-openwrt-dl-v2-${{ hashFiles('feeds.conf.default') }}
           restore-keys: |
-            ${{ runner.os }}-openwrt-dl-
+            ${{ runner.os }}-openwrt-dl-v2-
 
 
       - name: Install dependencies
@@ -93,7 +93,8 @@ jobs:
       - name: Update feeds
         run: |
           #./scripts/feeds update -a
-          ./scripts/feeds update -a && rm -rf feeds/luci/applications/luci-app-mosdns
+          ./scripts/feeds update -a
+          rm -rf feeds/luci/applications/luci-app-mosdns
           rm -rf feeds/packages/net/{alist,adguardhome,mosdns,xray*,v2ray*,v2ray*,sing*,smartdns}
           rm -rf feeds/packages/utils/v2dat
           rm -rf feeds/packages/lang/golang
@@ -248,7 +249,6 @@ jobs:
       - name: Make download
         run: |
           make download -j8 || make download -j1
-          rm -rf $(find ./dl/ -size -1024c)
           df -h
 
       - name: Compile firmware
