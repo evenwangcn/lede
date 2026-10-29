@@ -201,6 +201,9 @@ jobs:
           CONFIG_PACKAGE_luci-app-samba=n
           CONFIG_PACKAGE_luci-app-samba4=n
           CONFIG_PACKAGE_luci-app-ddnsto=y
+          CONFIG_PACKAGE_kmod-wireguard=y
+          CONFIG_PACKAGE_wireguard-tools=y
+          CONFIG_PACKAGE_luci-proto-wireguard=y
           EOF
 
           # LuCI主题:
@@ -233,7 +236,6 @@ jobs:
           CONFIG_PACKAGE_luci-app-upnp=n
           CONFIG_PACKAGE_luci-app-wol=n
           CONFIG_PACKAGE_luci-app-qbittorrent_dynamic=n
-          CONFIG_PACKAGE_luci-app-wireguard=n
           EOF
 
           # 
@@ -266,7 +268,7 @@ jobs:
           mkdir -p ./artifact/buildinfo
           rm -rf $(find ./bin/targets/ -type d -name "packages")
           cp -rf $(find ./bin/targets/ -type f) ./artifact/firmware/
-          cp -rf $(find ./bin/packages/ -type f -name "*.ipk") ./artifact/package/
+          find ./bin/packages/ -type f \( -name '*.apk' -o -name '*.ipk' \) -exec cp -f {} ./artifact/package/ \;
           cp -rf $(find ./bin/targets/ -type f -name "*.buildinfo" -o -name "*.manifest") ./artifact/buildinfo/
 
       - name: Deliver buildinfo
