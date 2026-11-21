@@ -209,7 +209,8 @@ jobs:
           # LuCI主题:
           cat >> .config <<EOF
           CONFIG_PACKAGE_luci-theme-argon=y
-          #CONFIG_PACKAGE_luci-theme-design=y
+          # CONFIG_PACKAGE_luci-theme-design is not set
+          # CONFIG_PACKAGE_luci-app-design-config is not set
           EOF
 
           # 其它设置
@@ -244,6 +245,16 @@ jobs:
 
           sed -i 's/^[ \t]*//g' ./.config
           make defconfig
+      - name: Set Argon as default theme
+        run: |
+          mkdir -p files/etc/uci-defaults
+          cat > files/etc/uci-defaults/zzzz-default-argon <<'EOF'
+          #!/bin/sh
+          uci set luci.main.mediaurlbase='/luci-static/argon'
+          uci commit luci
+          exit 0
+          EOF
+          chmod +x files/etc/uci-defaults/zzzz-default-argon
 
       - name: Make download
         run: |
